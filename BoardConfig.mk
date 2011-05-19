@@ -26,7 +26,7 @@
 USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
--include vendor/htc/bravo/BoardConfigVendor.mk
+-include vendor/htc/bravoc/BoardConfigVendor.mk
 
 # config.mk
 #
@@ -43,7 +43,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
-TARGET_BOOTLOADER_BOARD_NAME := bravo
+TARGET_BOOTLOADER_BOARD_NAME := bravoc
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
@@ -67,7 +67,7 @@ BOARD_VENDOR_QCOM_AMSS_VERSION := 3200
 
 BOARD_VENDOR_USE_AKMD := akm8973
 
-BOARD_EGL_CFG := device/htc/bravo/egl.cfg
+BOARD_EGL_CFG := device/htc/bravoc/egl.cfg
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
@@ -89,19 +89,15 @@ ifeq (eng,$(TARGET_BUILD_VARIANT))
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x09000000
 endif
 
-TARGET_RECOVERY_UI_LIB := librecovery_ui_bravo librecovery_ui_htc
+TARGET_RECOVERY_UI_LIB := librecovery_ui_bravoc librecovery_ui_htc
 
 TARGET_RECOVERY_UPDATER_LIBS += librecovery_updater_htc
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
 # to enable the GPS HAL
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := bravo
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := bravoc
 # AMSS version to use for GPS
-BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 3200
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 
-ifeq (oxygen_bravo,$(TARGET_PRODUCT))
-BOARD_HAVE_FM_RADIO := true
-BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 TARGET_PROVIDES_INIT_RC := true
-endif

@@ -15,38 +15,32 @@
 #
 
 #
-# This is the product configuration for a generic GSM bravo,
+# This is the product configuration for a generic CDMA bravo,
 # not specialized for any geography.
 #
 
 ## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 
 PRODUCT_COPY_FILES += \
-    device/htc/bravo/init.bravo.rc:root/init.bravo.rc \
-    device/htc/bravo/ueventd.bravo.rc:root/ueventd.bravo.rc
-
-ifneq (devnull_bravo,$(TARGET_PRODUCT))
-PRODUCT_COPY_FILES += \
-    device/htc/bravo/init.rc:root/init.rc
-endif
-
-ifeq (dehydration_bravo,$(TARGET_PRODUCT))
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=200
-else
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=240
-endif
+    device/htc/bravoc/init.bravoc.rc:root/init.bravoc.rc \
+    device/htc/bravoc/ueventd.bravoc.rc:root/ueventd.bravoc.rc \
+    device/htc/bravoc/init.rc:root/init.rc
 
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sf.lcd_density=240 \
     rild.libpath=/system/lib/libhtc_ril.so \
     wifi.interface=eth0 \
-    wifi.supplicant_scan_interval=15
+    wifi.supplicant_scan_interval=15 \
+    ro.cdma.home.operator.numeric=310120 \
+    ro.cdma.home.operator.alpha=USCC \
+    gsm.sim.operator.numeric=0 \
+    gsm.sim.operator.alpha=0 \
+    gsm.sim.operator.iso-country=0
 
 # Default network type.
-# 0 => WCDMA preferred.
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.default_network=0
+    ro.ril.def.preferred.network=4 \
+    ro.telephony.default_network=4
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
@@ -58,18 +52,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=32m
 
 
-## (2) Also get non-open-source GSM-specific aspects if available
-$(call inherit-product-if-exists, vendor/htc/bravo/bravo-vendor.mk)
+## (2) Also get non-open-source CDMA-specific aspects if available
+$(call inherit-product-if-exists, vendor/htc/bravoc/bravoc-vendor.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.media.dec.jpeg.memcap=20000000
 
-DEVICE_PACKAGE_OVERLAYS += device/htc/bravo/overlay
+DEVICE_PACKAGE_OVERLAYS += device/htc/bravoc/overlay
 
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
@@ -80,11 +74,11 @@ PRODUCT_COPY_FILES += \
 
 # media config xml file
 PRODUCT_COPY_FILES += \
-    device/htc/bravo/media_profiles.xml:system/etc/media_profiles.xml
+    device/htc/bravoc/media_profiles.xml:system/etc/media_profiles.xml
 
 PRODUCT_PACKAGES += \
-    sensors.bravo \
-    lights.bravo \
+    sensors.bravoc \
+    lights.bravoc \
     gralloc.qsd8k \
     librs_jni \
     com.android.future.usb.accessory
@@ -96,17 +90,18 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_LOCALES := hdpi
 
 PRODUCT_COPY_FILES += \
-    device/htc/bravo/bravo-keypad.kl:system/usr/keylayout/bravo-keypad.kl \
-    device/htc/bravo/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
-    device/htc/bravo/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
-    device/htc/bravo/vold.fstab:system/etc/vold.fstab
+    device/htc/bravoc/bravoc-keypad.kl:system/usr/keylayout/bravoc-keypad.kl \
+    device/htc/bravoc/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
+    device/htc/bravoc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
+    device/htc/bravoc/vold.fstab:system/etc/vold.fstab \
+    device/htc/bravoc/apns-conf.xml:system/etc/apns-conf.xml
 
 
 PRODUCT_COPY_FILES += \
     device/htc/bravo/bcm4329.ko:system/lib/modules/bcm4329.ko
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/htc/bravo/kernel
+LOCAL_KERNEL := device/htc/bravoc/kernel
 else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
@@ -114,13 +109,7 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
-ifeq (oxygen_bravo,$(TARGET_PRODUCT))
-    WITH_DEXPREOPT=false
-else
-    WITH_DEXPREOPT=true
-endif
-
-$(call inherit-product-if-exists, vendor/htc/bravo/bravo-vendor.mk)
+$(call inherit-product-if-exists, vendor/htc/bravoc/bravoc-vendor.mk)
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)

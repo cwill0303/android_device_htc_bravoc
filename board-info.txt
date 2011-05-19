@@ -1,4 +1,2 @@
 require mid=P*
-require board=bravo|desire
-require version-microp=031d|051d
-require version-baseband=5.09.05.30_2|5.10.05.17_2|5.10.05.23|5.11.05.14|5.11.05.27|5.14.05.17|5.17.05.08
+require board=bravoc

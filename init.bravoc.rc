@@ -50,16 +50,6 @@ on boot
     setprop ro.ril.fd.scron.timeout 4
     setprop ro.ril.fd.scroff.timeout 3
 
-    # Radio settings
-    setprop ro.ril.enable.a52 0
-    setprop ro.ril.enable.a53 1
-    setprop ro.ril.enable.dtm 1
-    setprop ro.ril.gprsclass 12
-    setprop ro.ril.hsdpa.category 8
-    setprop ro.ril.hsupa.category 5
-    setprop ro.ril.hsxpa 2
-    setprop ro.ril.enable.prl.recognition 1
-
 # compass/accelerometer daemon
 service akmd /system/bin/akmd
     user compass

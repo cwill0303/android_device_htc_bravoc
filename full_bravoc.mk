@@ -14,7 +14,7 @@
 
 #
 # This file is the build configuration for a full Android
-# build for bravo hardware. This cleanly combines a set of
+# build for bravoc hardware. This cleanly combines a set of
 # device-specific aspects (drivers) with a device-agnostic
 # product configuration (apps).
 #
@@ -24,13 +24,13 @@
 # This is where we'd set a backup provider if we had one
 #$(call inherit-product, device/sample/products/backup_overlay.mk)
 # The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_eu_supl.mk)
+$(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 # The rest of the configuration is inherited from a generic config
-$(call inherit-product, device/htc/bravo/bravo.mk)
+$(call inherit-product, device/htc/bravoc/bravoc.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := full_bravo
-PRODUCT_DEVICE := bravo
-PRODUCT_MODEL := Full Android on Bravo
+PRODUCT_NAME := full_bravoc
+PRODUCT_DEVICE := bravoc
+PRODUCT_MODEL := Full Android on BravoC

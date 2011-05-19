@@ -217,7 +217,7 @@ static int set_light_battery (struct light_device_t* dev,
 
 static int set_light_attention (struct light_device_t* dev,
 		struct light_state_t const* state) {
-	/* bravo has no attention, bad bravo */
+	/* bravoc has no attention, bad bravoc */
 
 	return 0;
 }

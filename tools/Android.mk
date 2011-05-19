@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_DEVICE),bravo)
+ifeq ($(TARGET_DEVICE),bravoc)
 ifneq ($(BUILD_TINY_ANDROID),true)
 
 LOCAL_PATH:= $(call my-dir)
