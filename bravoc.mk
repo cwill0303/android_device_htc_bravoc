@@ -98,7 +98,7 @@ PRODUCT_COPY_FILES += \
 
 
 PRODUCT_COPY_FILES += \
-    device/htc/bravo/bcm4329.ko:system/lib/modules/bcm4329.ko
+    device/htc/bravoc/bcm4329.ko:system/lib/modules/bcm4329.ko
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 LOCAL_KERNEL := device/htc/bravoc/kernel
