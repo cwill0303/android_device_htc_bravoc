@@ -27,8 +27,8 @@
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 # The rest of the configuration is inherited from a generic config
-$(call inherit-product, device/htc/bravoc/bravoc.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
+$(call inherit-product, device/htc/bravoc/bravoc.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := full_bravoc
