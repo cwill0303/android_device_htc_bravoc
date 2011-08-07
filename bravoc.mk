@@ -23,8 +23,7 @@
 
 PRODUCT_COPY_FILES += \
     device/htc/bravoc/init.bravoc.rc:root/init.bravoc.rc \
-    device/htc/bravoc/ueventd.bravoc.rc:root/ueventd.bravoc.rc \
-    device/htc/bravoc/init.rc:root/init.rc
+    device/htc/bravoc/ueventd.bravoc.rc:root/ueventd.bravoc.rc
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 \
